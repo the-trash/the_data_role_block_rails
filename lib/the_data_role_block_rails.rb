@@ -16,7 +16,7 @@ module TheDataRoleBlockRails
 
     initializer 'data-role-block-haml.register' do |app|
       if defined?(Haml::Parser)
-        module Haml::Parser
+        class Haml::Parser
           DIV_ROLE  = '@'
           DIV_BLOCK = '@@'
 
@@ -50,7 +50,6 @@ module TheDataRoleBlockRails
                   attributes['data-role'] = ""
                 end
                 attributes['data-role'] += property
-              end
               when '@@'
                 if attributes['data-block']
                   attributes['data-block'] += " "
