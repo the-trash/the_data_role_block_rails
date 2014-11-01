@@ -7,8 +7,27 @@ Mix of `data-role`, `data-block` solutions from:
 
 Gem provide
 
-1. marker `@` for `data-role` and marker `@@` for `data-block` for `SLIM` and `HAML`
-2. JQuery plugin with selectors `$('@role-name')` and `$('@@block-name')` and methods `addRole`, `removeRole`, `addBlock`, `removeBlock`
+marker `@` for `data-role` and marker `@@` for `data-block` for `SLIM` and `HAML`
+
+```slim
+@hello-world
+  | Hello World
+
+@@some-block
+  | WebBrick
+```
+and JQ methods for `data-role` and `data-block` items
+
+```coffeescript
+$ ->
+  $('@hello-world').addRole 'sunshine'
+  $('@hello-world').removeRole 'sunshine'
+  $('@hello-world').toggleRole 'sunshine'
+
+  $('@@some-block').addBlock 'stone'
+  $('@@some-block').removeBlock 'stone'
+  $('@@some-block').toggleBlock 'stone'
+```
 
 ## Installation
 
