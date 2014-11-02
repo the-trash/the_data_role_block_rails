@@ -37,6 +37,13 @@ Add this line to your application's Gemfile:
 gem 'the_data_role_block_rails'
 ```
 
+## DATA-ATTRIBUTES notice
+
+I use
+
+1. `data-block` aka `@@` for containers
+2. `data-role` aka `@` for items with handlers or for items with values
+
 And then execute:
 
 ```
