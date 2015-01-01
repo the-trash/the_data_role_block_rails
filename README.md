@@ -29,6 +29,39 @@ $ ->
   $('@@some-block').toggleBlock 'stone'
 ```
 
+## DATA-ATTRIBUTES notice
+
+I use
+
+1. `data-block` aka `@@` for containers
+2. `data-role` aka `@` for items with handlers or for items with values
+
+for example
+
+**SLIM**
+```slim
+button@btn-action
+
+@@home
+  | Hello World
+  a#bird(href='#') Tweet
+  a#cat(href='#') Meow 
+  a#dog(href='#') Woof
+```
+
+**JS (CoffeeScript)**
+```coffeescript
+$ ->
+  $('@btn-action').on 'click', (e) ->
+    $('@@home a').addClass 'pet'
+    false
+    
+  $('@@home a').on 'click', (e) ->
+    link = $ e.target
+    console.log link.text()
+    false
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
