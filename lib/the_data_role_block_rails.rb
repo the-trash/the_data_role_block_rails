@@ -4,13 +4,14 @@ module TheDataRoleBlockRails
   class Engine < ::Rails::Engine
     initializer 'data-role-block-slim.register' do
       if defined?(Slim::Parser)
-        shortcut = Slim::Parser.default_options[:shortcut]
+        shortcut    = Slim::Parser.options[:shortcut]
+        merge_attrs = Slim::Engine.options[:merge_attrs]
 
-        shortcut['@']  = { attr: 'data-role' }
-        shortcut['@@'] = { attr: 'data-block' }
+        shortcut.try :[]=, '@',  attr: 'data-role'
+        shortcut.try :[]=, '@@', attr: 'data-block'
 
-        Slim::Engine.default_options[:merge_attrs]['data-role']  = ' '
-        Slim::Engine.default_options[:merge_attrs]['data-block'] = ' '
+        merge_attrs.try :[]=, 'data-role',  ' '
+        merge_attrs.try :[]=, 'data-block', ' '
       end
     end
 
@@ -23,11 +24,24 @@ module TheDataRoleBlockRails
           private
 
           original_process_line_method = instance_method :process_line
-          define_method :process_line do |text, index|
-            if (text.slice(0,2) === DIV_BLOCK) || (text[0] === DIV_ROLE)
-              push div(text)
-            else
-              original_process_line_method.bind(self).call(text, index)
+
+          if Haml::VERSION.to_f > 4.1
+            # >= 4.1
+            define_method :process_line do |line|
+              if (line.text.slice(0,2) === DIV_BLOCK) || (line.text[0] === DIV_ROLE)
+                push div(line)
+              else
+                original_process_line_method.bind(self).call(line)
+              end
+            end
+          else
+            # <= 4.1
+            define_method :process_line do |text, index|
+              if (text.slice(0,2) === DIV_BLOCK) || (text[0] === DIV_ROLE)
+                push div(text)
+              else
+                original_process_line_method.bind(self).call(text, index)
+              end
             end
           end
 
