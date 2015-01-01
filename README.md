@@ -1,7 +1,8 @@
-WARNING! DEPRECATED!
+# WARNING! DEPRECATED!
 
-PLEASE, STUDY FOLLOWING SOLUTIONS: https://github.com/data-role-block
+# PLEASE, STUDY FOLLOWING SOLUTIONS: https://github.com/data-role-block
 
+===
 
 # TheDataRoleBlockRails
 
