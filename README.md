@@ -1,3 +1,8 @@
+WARNING! DEPRECATED!
+
+PLEASE, STUDY FOLLOWING SOLUTIONS: https://github.com/data-role-block
+
+
 # TheDataRoleBlockRails
 
 Mix of `data-role`, `data-block` solutions from:
